@@ -1,0 +1,21 @@
+node("linux"){
+    stage("Git checkout"){
+        git branch: 'main', credentialsId: 'e6dab402-b189-49bd-a867-d749262acb4a', url: 'https://github.com/Kurov-Oleg/jenkins.git'
+    }
+    stage("Sample define secret_check"){
+        secret_check=true
+    }
+    stage("install roles"){
+        sh ''
+        sh 'pwd && ansible-galaxy install -r example-playbook/requirements.yml'
+    }
+    stage("Run playbook"){
+        if (params.prod_run){
+            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod/hosts.yml'
+        }
+        else{
+            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod/hosts.yml --check --diff'
+        }
+
+    }
+}
