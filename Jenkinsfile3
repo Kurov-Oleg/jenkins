@@ -1,0 +1,19 @@
+pipeline{
+    agent {
+        label 'linux'
+    }
+    stages {
+        stage('get'){
+            steps{
+            git branch: 'main', url: 'https://github.com/netology-code/mnt-homeworks-ansible.git'
+        }}
+        stage('Install'){
+            steps{
+            sh 'pip3 install -r test-requirements.txt'
+        }}
+        stage('Run') {
+            steps{
+            sh 'molecule test'
+        }}
+    }
+}
