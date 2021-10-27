@@ -2,7 +2,7 @@
 - name: "Download Elasticsearch's rpm"
   get_url:
     url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
-    dest: "/opt/jenkins_agent/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
+    dest: "files/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
   register: download_elastic
   delegate_to: localhost
   until: download_elastic is succeeded
@@ -11,4 +11,4 @@
   copy:
     src: "files/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
     mode: 0755
-    dest: "/opt/jenkins_agent/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
+    dest: "jenkins_agent/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
