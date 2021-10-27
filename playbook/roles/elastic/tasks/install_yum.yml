@@ -2,6 +2,6 @@
 - name: Install Elasticsearch
   become: true
   yum:
-    name: "/opt/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
+    name: "/opt/jenkins_agent/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
     state: present
   notify: restart Elasticsearch
