@@ -3,13 +3,13 @@
   become: true
   get_url:
     url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm
-    dest: /etc/yum.repos.d/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm
+    dest: /home/rattle/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm
   delegate_to: localhost
   register: download_elastic
   until: download_elastic is succeeded
   when: elastic_install_type == 'remote'
 - name: Copy Elasticsearch to manage host
   copy:
-    src: "/etc/yum.repos.d/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
+    src: "/home/rattle/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
     mode: 0755
     dest: "/home/rattle/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
