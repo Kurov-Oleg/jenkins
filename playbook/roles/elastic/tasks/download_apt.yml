@@ -2,6 +2,7 @@
 - name: "Download Elasticsearch's deb"
   get_url:
     url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
+    dest: "files/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
   register: download_elastic
   until: download_elastic is succeeded
   when: elastic_install_type == 'remote'
