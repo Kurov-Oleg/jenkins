@@ -2,6 +2,6 @@
 - name: Install Elasticsearch
   become: true
   yum:
-    name: "elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
+    name: "/home/rattle/elasticsearch-{{ elasticsearch_version }}-x86_64.rpm"
     state: present
   notify: restart Elasticsearch
